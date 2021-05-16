@@ -1,0 +1,68 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin: 50px auto;
+}
+
+.card {
+    box-sizing: border-box;
+    box-shadow: 0 0 2px rgb(0 0 0 / 30%);
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.productContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.productImage {
+    height: 64px;
+    width: 64px;
+}
+
+.productWrap {
+    padding: 8px;
+}
+
+.productName {
+    margin: 0;
+    line-height: 20px;
+    font-size: 15px;
+}
+
+.productPrice{
+    background: green;
+    color: #fff;
+    padding: 2px 4px;
+    font-size: 12px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.productDescription {
+    margin: 5px 0 0 0;
+    font-size: 12px !important;
+    color: grey;
+}
+
+.productAvailability {
+    margin: 5px 0 0 0;
+    font-size: 12px !important;
+    color: grey;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addToCardButton {
+    background: transparent;
+    border: 1px solid green;
+    color: green;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
