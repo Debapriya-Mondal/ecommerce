@@ -1,0 +1,13 @@
+.container {
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .row .col {
+  text-align: center;
+  border: 2px solid red;
+}
