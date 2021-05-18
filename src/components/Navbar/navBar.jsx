@@ -7,16 +7,16 @@ class Navbar extends Component {
     return (
       <>
         <div className="navbar">
-          <h2>Ecommerce</h2>
+          <h2>E-commerce</h2>
           <ul>
             <li>
-              <Link to="/products">Products</Link>
+              <Link to="/">Products</Link>
             </li>
             <li>
               <Link to="/">Add Products</Link>
             </li>
             <li>
-              <Link to="/">Cart</Link>
+              <Link to="/cart">Cart</Link>
             </li>
             <li>
               <Link to="/login">Login</Link>

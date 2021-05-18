@@ -1,0 +1,39 @@
+.container {
+  margin: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.container p {
+  font-size: 20px;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.container input {
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: rgba(139, 139, 139, 0.897);
+  border: 1px solid rgba(39, 199, 87, 0.555);
+}
+
+.container .button {
+  width: 20%;
+  padding: 10px;
+  margin-left: 30%;
+  margin-top: 20px;
+  border: 2px solid;
+  border-radius: 10px;
+  background-color: rgba(91, 202, 96, 0.884);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+}
