@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./card.module.css";
 
-export default ({ flag }) => {
+export default ({ flag, productName, Price, inStock, shortDescription }) => {
   return (
     <div className={styles.card}>
       <div className={styles.productContainer}>
@@ -19,12 +19,9 @@ export default ({ flag }) => {
             </div>
           )}
           <h2 className={styles.productName}>
-            Show <span className={styles.productPrice}>$199.99</span>
+            {productName} <span className={styles.productPrice}>${Price}</span>
           </h2>
-          <p className={styles.productDescription}>
-            Assign arrow function to a variable before exporting as module
-            default
-          </p>
+          <p className={styles.productDescription}>{shortDescription}</p>
           <p className={styles.productAvailability}>7 avalable</p>
         </div>
       </div>

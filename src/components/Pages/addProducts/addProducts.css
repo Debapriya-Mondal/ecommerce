@@ -1,25 +1,30 @@
-.loginContainer {
+.addProductContainer {
   box-sizing: border-box;
   margin: auto;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 550px;
 }
 
-.loginContainer p {
+.addProductContainer p {
   margin-bottom: 5px;
   font-size: 18px;
 }
 
-.loginContainer input {
+.addProductContainer input {
   padding: 10px;
   font-size: 18px;
   border: 1px solid rgba(91, 202, 96, 0.884);
   border-radius: 10px;
-  color: rgba(80, 80, 80, 0.747);
 }
-
-.loginContainer button {
+.addProductContainer textarea {
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid rgba(91, 202, 96, 0.884);
+  border-radius: 10px;
+  resize: none;
+}
+.addProductContainer button {
   padding: 10px;
   margin: auto;
   margin-top: 20px;

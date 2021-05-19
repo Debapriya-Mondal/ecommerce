@@ -5,7 +5,7 @@ class Navbar extends Component {
   state = {};
   render() {
     return (
-      <>
+      <nav>
         <div className="navbar">
           <h2>E-commerce</h2>
           <ul>
@@ -13,7 +13,7 @@ class Navbar extends Component {
               <Link to="/">Products</Link>
             </li>
             <li>
-              <Link to="/">Add Products</Link>
+              <Link to="/addProduct">Add Products</Link>
             </li>
             <li>
               <Link to="/cart">Cart</Link>
@@ -23,7 +23,7 @@ class Navbar extends Component {
             </li>
           </ul>
         </div>
-      </>
+      </nav>
     );
   }
 }
