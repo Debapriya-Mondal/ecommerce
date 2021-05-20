@@ -62,7 +62,16 @@ const Products = [
 ];
 
 export function getProducts() {
-  return Products;
+  return new Promise((res, rej) => {
+    res(Products);
+  });
+}
+
+export function getProductById(id) {
+  const Product = Products.find((p) => p._id === id);
+  return new Promise((res, rej) => {
+    res(Product);
+  });
 }
 
 export function addProduct(product) {

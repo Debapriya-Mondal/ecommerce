@@ -9,9 +9,9 @@ import addProducts from "./components/Pages/addProducts/addProducts";
 import { getUser } from "./Services/userService";
 import Logout from "./components/Logout/Logout";
 class App extends Component {
-  state = {};
-  componentDidMount() {
-    const user = getUser(localStorage.getItem("token"));
+  state = { user: {} };
+  async componentDidMount() {
+    const user = await getUser(localStorage.getItem("token"));
     this.setState({ user });
   }
   render() {

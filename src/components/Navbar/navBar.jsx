@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = ({ user }) => {
-  console.log(user);
   return (
     <nav className="navbar">
       <h2>E-commerce</h2>

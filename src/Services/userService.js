@@ -32,15 +32,10 @@ export function login(email, password) {
 }
 
 export function getUser(token) {
-  /* 
-  for (var user of users) {
-    if (user.token === token) {
-      return user;
-    }
-  }*/
-
   const user = users.find((u) => u.token === token);
-  return user;
+  return new Promise((res, rej) => {
+    res(user);
+  });
 }
 
 export function logout() {

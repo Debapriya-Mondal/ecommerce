@@ -1,7 +1,16 @@
 import React from "react";
 import styles from "./card.module.css";
 
-export default ({ flag, productName, Price, inStock, shortDescription }) => {
+export default ({
+  flag,
+  id,
+  productName,
+  Price,
+  inStock,
+  shortDescription,
+  onCartProduct,
+}) => {
+  console.log(typeof onCartProduct);
   return (
     <div className={styles.card}>
       <div className={styles.productContainer}>
@@ -22,12 +31,17 @@ export default ({ flag, productName, Price, inStock, shortDescription }) => {
             {productName} <span className={styles.productPrice}>${Price}</span>
           </h2>
           <p className={styles.productDescription}>{shortDescription}</p>
-          <p className={styles.productAvailability}>7 avalable</p>
+          <p className={styles.productAvailability}>{inStock} avalable</p>
         </div>
       </div>
       {!flag && (
         <div className={styles.buttonContainer}>
-          <button className={styles.addToCardButton}>Add to cart</button>
+          <button
+            className={styles.addToCardButton}
+            onClick={() => onCartProduct(id)}
+          >
+            Add to cart
+          </button>
         </div>
       )}
     </div>

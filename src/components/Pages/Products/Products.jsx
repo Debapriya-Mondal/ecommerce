@@ -5,8 +5,8 @@ import "./Products.css";
 import { getProducts } from "../../../Services/productService";
 class Products extends Component {
   state = { products: [] };
-  componentDidMount() {
-    const products = getProducts();
+  async componentDidMount() {
+    const products = await getProducts();
     this.setState({ products: products });
   }
   render() {
@@ -18,6 +18,7 @@ class Products extends Component {
             {this.state.products.map((product) => (
               <Card
                 key={product._id}
+                id={product._id}
                 flag={false}
                 productName={product.productName}
                 Price={product.Price}
