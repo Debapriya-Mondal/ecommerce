@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/navBar";
@@ -6,19 +6,28 @@ import Login from "./components/Pages/Login/Login";
 import Products from "./components/Pages/Products/Products";
 import Cart from "./components/Pages/Cart/Cart";
 import addProducts from "./components/Pages/addProducts/addProducts";
-
-function App() {
-  return (
-    <div className="App">
-      <Navbar />
-      <Switch>
-        <Route path="/cart" component={Cart} />
-        <Route path="/login" component={Login} />
-        <Route path="/addProduct" component={addProducts} />
-        <Route path="/" exact component={Products} />
-      </Switch>
-    </div>
-  );
+import { getUser } from "./Services/userService";
+import Logout from "./components/Logout/Logout";
+class App extends Component {
+  state = {};
+  componentDidMount() {
+    const user = getUser(localStorage.getItem("token"));
+    this.setState({ user });
+  }
+  render() {
+    return (
+      <div className="App">
+        <Navbar user={this.state.user} />
+        <Switch>
+          <Route path="/cart" component={Cart} />
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/addProduct" component={addProducts} />
+          <Route path="/" exact component={Products} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;

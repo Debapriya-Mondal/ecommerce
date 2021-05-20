@@ -5,24 +5,31 @@
   justify-content: flex-start;
   border-bottom: 2px solid aliceblue;
   align-items: center;
+  height: 50px;
 }
 
 .navbar h2 {
   text-transform: uppercase;
-  margin: 10px;
+  margin-left: 10px;
 }
 
 .navbar ul {
-  list-style: none;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  padding: 1rem 0;
 }
 .navbar ul li {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  margin-left: 1rem;
+  list-style: none;
+}
+.navbar ul li:nth-child(1) {
+  margin-left: 3rem;
 }
 .navbar ul li a {
   text-decoration: none;
   color: black;
+}
+.navbar ul li a:hover {
+  color: #303634;
 }

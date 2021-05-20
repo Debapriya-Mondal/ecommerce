@@ -1,24 +1,26 @@
 import React, { Component } from "react";
 import Banner from "../../Banner/Banner";
+import { login } from "../../../Services/userService";
 import "./Login.css";
 class Login extends Component {
   state = {
-    data: {
+    user: {
       email: "",
       password: "",
     },
   };
   handelChange = ({ target }) => {
-    const data = { ...this.state.data };
-    data[target.name] = target.value;
-    this.setState({ data });
+    const user = { ...this.state.user };
+    user[target.name] = target.value;
+    this.setState({ user });
   };
   handelSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.data);
+    const { email, password } = this.state.user;
+    login(email, password);
   };
   render() {
-    const { email, passowrd } = this.state.data;
+    const { email, password } = this.state.user;
     return (
       <>
         <Banner name="Login" />
@@ -37,7 +39,7 @@ class Login extends Component {
               type="password"
               placeholder="Password"
               name="password"
-              value={passowrd}
+              value={password}
               onChange={this.handelChange}
             />
             <button type="submit" className="button">

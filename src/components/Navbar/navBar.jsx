@@ -1,31 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-class Navbar extends Component {
-  state = {};
-  render() {
-    return (
-      <nav>
-        <div className="navbar">
-          <h2>E-commerce</h2>
-          <ul>
-            <li>
-              <Link to="/">Products</Link>
-            </li>
-            <li>
-              <Link to="/addProduct">Add Products</Link>
-            </li>
+
+const Navbar = ({ user }) => {
+  console.log(user);
+  return (
+    <nav className="navbar">
+      <h2>E-commerce</h2>
+      <ul>
+        <li>
+          <Link to="/">Products</Link>
+        </li>
+        {user && (
+          <li>
+            <Link to="/addProduct">Add Products</Link>
+          </li>
+        )}
+
+        {!user && (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        )}
+        {user && (
+          <>
             <li>
               <Link to="/cart">Cart</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/logout">Logout</Link>
             </li>
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-}
+          </>
+        )}
+      </ul>
+    </nav>
+  );
+};
 
 export default Navbar;
