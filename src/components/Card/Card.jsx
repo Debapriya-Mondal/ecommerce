@@ -9,10 +9,17 @@ export default ({
   inStock,
   shortDescription,
   onCartProduct,
+  onRemove,
 }) => {
-  console.log(typeof onCartProduct);
   return (
     <div className={styles.card}>
+      {flag && (
+        <div className={styles.buttonContainer2}>
+          <button className={styles.removeButton} onClick={() => onRemove(id)}>
+            X
+          </button>
+        </div>
+      )}
       <div className={styles.productContainer}>
         <div>
           <img
@@ -22,23 +29,35 @@ export default ({
           />
         </div>
         <div className={styles.productWrap}>
-          {flag && (
-            <div className={styles.buttonContainer2}>
-              <button className={styles.removeButton}>X</button>
-            </div>
-          )}
           <h2 className={styles.productName}>
             {productName} <span className={styles.productPrice}>${Price}</span>
           </h2>
           <p className={styles.productDescription}>{shortDescription}</p>
-          <p className={styles.productAvailability}>{inStock} avalable</p>
+          {!flag &&
+            (inStock === 0 ? (
+              <p className={styles.productNotAvailability}>Out Of stock</p>
+            ) : (
+              <p className={styles.productAvailability}>{inStock} avalable</p>
+            ))}
+          {flag && (
+            <p className={styles.productAvailability}>{inStock} in Cart</p>
+          )}
         </div>
       </div>
+
       {!flag && (
         <div className={styles.buttonContainer}>
           <button
             className={styles.addToCardButton}
-            onClick={() => onCartProduct(id)}
+            onClick={() =>
+              onCartProduct({
+                _id: id,
+                productName: productName,
+                Price: Price,
+                count: 1,
+                shortDescription: shortDescription,
+              })
+            }
           >
             Add to cart
           </button>

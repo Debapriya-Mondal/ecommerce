@@ -3,12 +3,31 @@ import { Grid, Card } from "../../Card";
 import Banner from "../../Banner/Banner";
 import "./Products.css";
 import { getProducts } from "../../../Services/productService";
+import {
+  cartProducts as cartProduct,
+  addToCart,
+} from "../../../Services/cartService";
 class Products extends Component {
-  state = { products: [] };
+  state = { products: [], cartProducts: [] };
   async componentDidMount() {
     const products = await getProducts();
-    this.setState({ products: products });
+    const cartProducts = await cartProduct();
+    this.setState({ products: products, cartProducts });
   }
+
+  handleCartProduct = async (product) => {
+    const cartProducts = [...this.state.cartProducts];
+    const found = cartProducts.find((p) => p._id === product._id);
+    if (found) {
+      const index = cartProducts.indexOf(found);
+      cartProducts[index] = { ...found, count: found.count + 1 };
+    } else {
+      cartProducts.push(product);
+    }
+    this.setState({ cartProducts });
+    addToCart(this.state.cartProducts);
+    //console.log(this.state.cartProducts);
+  };
   render() {
     return (
       <>
@@ -24,6 +43,7 @@ class Products extends Component {
                 Price={product.Price}
                 inStock={product.inStock}
                 shortDescription={product.shortDescription}
+                onCartProduct={this.handleCartProduct}
               />
             ))}
           </Grid>

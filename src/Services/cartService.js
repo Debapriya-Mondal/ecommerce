@@ -1,4 +1,4 @@
-const Products = [];
+let Products = [];
 
 export function cartProducts() {
   return new Promise((res, rej) => {
@@ -11,4 +11,9 @@ export function getCartProductById(id) {
   return new Promise((res, rej) => {
     res(Product);
   });
+}
+
+export function addToCart(products) {
+  Products = products;
+  console.log(Products);
 }

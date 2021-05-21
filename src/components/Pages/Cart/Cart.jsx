@@ -3,7 +3,6 @@ import { Grid, Card } from "../../Card";
 import Banner from "../../Banner/Banner";
 import "./Cart.css";
 import { cartProducts } from "../../../Services/cartService";
-import { getCartProductById } from "../../../Services/cartService";
 
 class Cart extends Component {
   state = { Products: [] };
@@ -11,11 +10,12 @@ class Cart extends Component {
     const Products = await cartProducts();
     this.setState({ Products });
   }
-  handleCartProduct = async (id) => {
-    const Product = await getCartProductById(id);
-    const Products = [...this.state.Products];
-    const index = Products.indexOf(Product);
-    Products[index] = { ...Product, inStock: Product.inStock + 1 };
+  handelRemove = (id) => {
+    const Products = this.state.Products.filter((p) => p._id !== id);
+    this.setState({ Products: Products });
+  };
+  handelClear = () => {
+    const Products = [];
     this.setState({ Products });
   };
   render() {
@@ -27,15 +27,28 @@ class Cart extends Component {
             {this.state.Products.map((product) => (
               <Card
                 key={product._id}
+                id={product._id}
                 flag={true}
                 productName={product.productName}
                 Price={product.Price}
-                inStock={product.inStock}
+                inStock={product.count}
                 shortDescription={product.shortDescription}
-                onCartProduct={this.handleCartProduct}
+                onRemove={this.handelRemove}
               />
             ))}
           </Grid>
+          {this.state.Products.length !== 0 ? (
+            <>
+              <div className="footerContent">
+                <button className="btn clear" onClick={this.handelClear}>
+                  Clear
+                </button>
+                <button className="btn checkOut">Check Out</button>
+              </div>
+            </>
+          ) : (
+            <p className="message">No Products in cart</p>
+          )}
         </div>
       </>
     );

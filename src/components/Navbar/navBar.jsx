@@ -10,7 +10,7 @@ const Navbar = ({ user }) => {
         <li>
           <Link to="/">Products</Link>
         </li>
-        {user && (
+        {user && user.isAdmin && (
           <li>
             <Link to="/addProduct">Add Products</Link>
           </li>
