@@ -1,4 +1,4 @@
-const Products = [
+let Products = [
   {
     _id: "5b21ca3eeb7f6fbccd471815",
     productName: "Shoe",
@@ -84,4 +84,19 @@ export function addProduct(product) {
   productInDb.Description = product.Description;
   Products.push(productInDb);
   return productInDb;
+}
+
+export function saveProducts(products) {
+  Products = products;
+}
+
+export function updateInProductOnClear(products) {
+  for (let i = 0; i < products.length; i++) {
+    const tempProduct = Products.find((p) => p._id === products[i]._id);
+    const index = Products.indexOf(tempProduct);
+    Products[index] = {
+      ...tempProduct,
+      inStock: tempProduct.inStock + products[i].count,
+    };
+  }
 }

@@ -8,6 +8,7 @@ import Cart from "./components/Pages/Cart/Cart";
 import addProducts from "./components/Pages/addProducts/addProducts";
 import { getUser } from "./Services/userService";
 import Logout from "./components/Logout/Logout";
+import checkOut from "./components/Pages/checkOut/checkOut";
 class App extends Component {
   state = { user: {} };
   async componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/addProduct" component={addProducts} />
+          <Route path="/checkOut" component={checkOut} />
           <Route path="/" exact component={Products} />
         </Switch>
       </div>

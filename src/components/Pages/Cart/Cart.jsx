@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Grid, Card } from "../../Card";
 import Banner from "../../Banner/Banner";
 import "./Cart.css";
-import { cartProducts } from "../../../Services/cartService";
+import { cartProducts, saveCart } from "../../../Services/cartService";
+import { updateInProductOnClear } from "../../../Services/productService";
+import { Link } from "react-router-dom";
 
 class Cart extends Component {
   state = { Products: [] };
@@ -11,10 +13,13 @@ class Cart extends Component {
     this.setState({ Products });
   }
   handelRemove = (id) => {
-    const Products = this.state.Products.filter((p) => p._id !== id);
-    this.setState({ Products: Products });
+    updateInProductOnClear(this.state.Products);
+    const Product = this.state.Products.filter((p) => p._id !== id);
+    this.setState({ Products: Product });
+    saveCart(this.state.Products);
   };
   handelClear = () => {
+    updateInProductOnClear(this.state.Products);
     const Products = [];
     this.setState({ Products });
   };
@@ -43,7 +48,13 @@ class Cart extends Component {
                 <button className="btn clear" onClick={this.handelClear}>
                   Clear
                 </button>
-                <button className="btn checkOut">Check Out</button>
+                <Link
+                  to="/checkout"
+                  className="btn checkOut"
+                  style={{ textDecoration: "none" }}
+                >
+                  Check Out
+                </Link>
               </div>
             </>
           ) : (

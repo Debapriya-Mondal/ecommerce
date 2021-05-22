@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid, Card } from "../../Card";
 import Banner from "../../Banner/Banner";
 import "./Products.css";
-import { getProducts } from "../../../Services/productService";
+import { getProducts, saveProducts } from "../../../Services/productService";
 import {
   cartProducts as cartProduct,
   addToCart,
@@ -17,15 +17,23 @@ class Products extends Component {
 
   handleCartProduct = async (product) => {
     const cartProducts = [...this.state.cartProducts];
-    const found = cartProducts.find((p) => p._id === product._id);
-    if (found) {
-      const index = cartProducts.indexOf(found);
-      cartProducts[index] = { ...found, count: found.count + 1 };
+    const products = [...this.state.products];
+    const cartFound = cartProducts.find((p) => p._id === product._id);
+    const productFound = products.find((p) => p._id === product._id);
+    const productIndex = products.indexOf(productFound);
+    products[productIndex] = {
+      ...productFound,
+      inStock: productFound.inStock - 1,
+    };
+    if (cartFound) {
+      const index = cartProducts.indexOf(cartFound);
+      cartProducts[index] = { ...cartFound, count: cartFound.count + 1 };
     } else {
       cartProducts.push(product);
     }
-    this.setState({ cartProducts });
+    this.setState({ cartProducts, products });
     addToCart(this.state.cartProducts);
+    saveProducts(this.state.products);
     //console.log(this.state.cartProducts);
   };
   render() {

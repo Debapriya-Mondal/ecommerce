@@ -15,5 +15,9 @@ export function getCartProductById(id) {
 
 export function addToCart(products) {
   Products = products;
-  console.log(Products);
+}
+
+export function saveCart(products) {
+  Products = products;
+  console.log(products);
 }
