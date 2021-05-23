@@ -10,6 +10,7 @@ export default ({
   shortDescription,
   onCartProduct,
   onRemove,
+  user,
 }) => {
   return (
     <div className={styles.card}>

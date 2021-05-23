@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Grid, Card } from "../../Card";
 import Banner from "../../Banner/Banner";
 import "./Products.css";
@@ -16,25 +17,29 @@ class Products extends Component {
   }
 
   handleCartProduct = async (product) => {
-    const cartProducts = [...this.state.cartProducts];
-    const products = [...this.state.products];
-    const cartFound = cartProducts.find((p) => p._id === product._id);
-    const productFound = products.find((p) => p._id === product._id);
-    const productIndex = products.indexOf(productFound);
-    products[productIndex] = {
-      ...productFound,
-      inStock: productFound.inStock - 1,
-    };
-    if (cartFound) {
-      const index = cartProducts.indexOf(cartFound);
-      cartProducts[index] = { ...cartFound, count: cartFound.count + 1 };
+    //console.log(this.props.user);
+    if (!this.props.user) {
+      this.props.history.push("/login");
     } else {
-      cartProducts.push(product);
+      const cartProducts = [...this.state.cartProducts];
+      const products = [...this.state.products];
+      const cartFound = cartProducts.find((p) => p._id === product._id);
+      const productFound = products.find((p) => p._id === product._id);
+      const productIndex = products.indexOf(productFound);
+      products[productIndex] = {
+        ...productFound,
+        inStock: productFound.inStock - 1,
+      };
+      if (cartFound) {
+        const index = cartProducts.indexOf(cartFound);
+        cartProducts[index] = { ...cartFound, count: cartFound.count + 1 };
+      } else {
+        cartProducts.push(product);
+      }
+      this.setState({ cartProducts, products });
+      addToCart(cartProducts);
+      saveProducts(products);
     }
-    this.setState({ cartProducts, products });
-    addToCart(this.state.cartProducts);
-    saveProducts(this.state.products);
-    //console.log(this.state.cartProducts);
   };
   render() {
     return (
@@ -52,6 +57,7 @@ class Products extends Component {
                 inStock={product.inStock}
                 shortDescription={product.shortDescription}
                 onCartProduct={this.handleCartProduct}
+                user={this.props.user}
               />
             ))}
           </Grid>
@@ -61,4 +67,4 @@ class Products extends Component {
   }
 }
 
-export default Products;
+export default withRouter(Products);

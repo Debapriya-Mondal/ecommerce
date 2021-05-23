@@ -19,5 +19,4 @@ export function addToCart(products) {
 
 export function saveCart(products) {
   Products = products;
-  console.log(products);
 }

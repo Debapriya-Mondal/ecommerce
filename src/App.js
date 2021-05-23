@@ -25,7 +25,11 @@ class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/addProduct" component={addProducts} />
           <Route path="/checkOut" component={checkOut} />
-          <Route path="/" exact component={Products} />
+          <Route
+            path="/"
+            exact
+            component={() => <Products user={this.state.user} />}
+          />
         </Switch>
       </div>
     );

@@ -14,14 +14,15 @@ class Cart extends Component {
   }
   handelRemove = (id) => {
     updateInProductOnClear(this.state.Products);
-    const Product = this.state.Products.filter((p) => p._id !== id);
-    this.setState({ Products: Product });
-    saveCart(this.state.Products);
+    const Products = this.state.Products.filter((p) => p._id !== id);
+    this.setState({ Products: Products });
+    saveCart(Products);
   };
   handelClear = () => {
     updateInProductOnClear(this.state.Products);
     const Products = [];
     this.setState({ Products });
+    saveCart(Products);
   };
   render() {
     return (
